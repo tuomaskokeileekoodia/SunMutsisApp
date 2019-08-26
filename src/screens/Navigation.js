@@ -5,6 +5,7 @@ import LoginScreen from "./LoginScreen";
 import HomeScreen from "./HomeScreen";
 import MenuScreen from "./MenuScreen";
 import AddTaskScreen from "./AddTaskScreen";
+import Mapview from "./Mapview";
 
 
 const Navigation = createStackNavigator(
@@ -12,10 +13,10 @@ const Navigation = createStackNavigator(
         Login: LoginScreen,
         Home: HomeScreen,//tähän perään saa valumaan propseja. Selvitä.
         Menu: MenuScreen,
-        AddTask: AddTaskScreen,
+        Mapview: Mapview,
     },
     {
-        initialRouteName: 'Login',
+        initialRouteName: 'Mapview',
         //headerMode hävittää täältä tuon backbuttonin, mutta tekee sen nyt kaikilla sivuilla ja ei estä fyysisen backbuttonin painamista.
         headerMode: "none"
         /*  defaultNavigationOptions:{
