@@ -18,7 +18,7 @@ const Navigation = createStackNavigator(
     {
         initialRouteName: 'Mapview',
         //headerMode hävittää täältä tuon backbuttonin, mutta tekee sen nyt kaikilla sivuilla ja ei estä fyysisen backbuttonin painamista.
-        headerMode: "none"
+        headerMode: "Menu"
         /*  defaultNavigationOptions:{
             title: 'Sun Mutsis',
               headerLeft: <Button onPress={() => props.navigation.navigate('tähän halutun screenin nimi')} title= "HOME?BACK?" />,
