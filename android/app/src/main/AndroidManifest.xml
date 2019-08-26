@@ -23,7 +23,7 @@
       <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
         <meta-data
                 android:name="com.google.android.geo.API_KEY"
-                android:value="AIzaSyBAJBrYPmykT-PN5h28d7fxOV0ALki3bgs"/>
+                android:value="TÄMÄN_OMAN_APIAVAIMEN_SAATTE ERILLISENÄ, EI SUOSITELTU JAETTAVAKSI GITHUBISSA.."/>
     </application>
 
 </manifest>
