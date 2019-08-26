@@ -11,7 +11,7 @@ export default class Main extends React.Component {
 
     render() {
         const tasks = this.props.tasks.map((val, key) => {
-            return <Task key={key} keyval={key} val={val} deleteTask = {this.props.deleteTask} {...this.props}/>
+            return <Task key={key} keyval={key} val={val} deleteTask={this.props.deleteTask} updateTask={this.props.updateTask}{...this.props}/>
         });
 
 

@@ -6,7 +6,6 @@ export default class NavBar extends Component {
     render() {
         return (
             <View>
-                <Text>Tämä tulee meidän NavBarista</Text>
             </View>
         );
     }
