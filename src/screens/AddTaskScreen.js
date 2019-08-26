@@ -5,8 +5,8 @@ import t from 'tcomb-form-native';
 const Form = t.form.Form;
 
 const Task = t.struct({
-    nimi: t.String,
-    sisalto: t.String,
+    aihe: t.String,
+    kuvaus: t.String,
     deadline: t.String,
     sijainti: t.String
 });
@@ -38,10 +38,10 @@ const formStyles = {
 
 const options = {
     fields: {
-        nimi: {
+        aihe: {
             error: 'Ei ole sopiva nimi'
         },
-        sisalto: {
+        kuvaus: {
             error: 'Ei ole sopiva sisältö'
         },
         deadline: {
@@ -58,11 +58,11 @@ export default class AddTaskScreen extends Component {
 
     constructor(props) {
         super(props);
-        const nimi = this.props.navigation.getParam('task', '');
+        const task = this.props.navigation.getParam('task', '');
 
         this.state = {task: {
-            nimi: nimi,
-            sisalto:"",
+            aihe: task,
+            kuvaus:"",
             deadline:"",
             sijainti:""
         }, isAddButtonVisible: true,
@@ -79,7 +79,10 @@ export default class AddTaskScreen extends Component {
 
     render() {
         const {navigate} = this.props.navigation;
+        const taskId = this.props.navigation.getParam('taskId');
         const insertTask =  this.props.navigation.getParam('insertTask');
+        const updateTask = this.props.navigation.getParam('updateTask');
+        console.log(taskId);
         return(
             <View style={styles.container}>
                 <Form
@@ -104,7 +107,9 @@ export default class AddTaskScreen extends Component {
                             () => navigate('Home'))}
                     />}
                     {(this.state.isSaveButtonVisible) && <Button
-                        title="Tallenna tehtävä"/>}
+                        title="Tallenna tehtävä"
+                        onPress={() => updateTask({ _id: taskId },this.state.task).then(
+                        () => navigate('Home'))}/>}
                 </View>
             </View>
         );
