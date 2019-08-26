@@ -9,13 +9,13 @@ export default class HomeScreen extends Component {
     render() {
         const {navigate}=this.props.navigation;
         const tasks = this.props.navigation.getParam('tasks','ei tullu mitään');
-        const testi =  'testi';
+        const insertTask =  this.props.navigation.getParam('insertTask');
+        const deleteTask =  this.props.navigation.getParam('deleteTask');
     return (
         <View>
             <NavBar/>
-            <Main tasks={tasks} {...this.props}/>
-            {/*<Text style={styles.saatanallinenTeksti}>Ystävä</Text>*/}
-            <Footer testi={testi} {...this.props} />
+            <Main tasks={tasks} deleteTask={deleteTask} {...this.props}/>
+            <Footer {...this.props} insertTask={insertTask}/>
         </View>
     );
 }};

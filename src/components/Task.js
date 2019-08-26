@@ -41,11 +41,13 @@ export default class Task extends React.Component {
                   </TouchableOpacity>
 
 
-                <TouchableOpacity onPress={this.props.deleteMethod} style={styles.noteDelete}>
+                <TouchableOpacity onPress={() => this.props.deleteTask(this.props.val._id)} style={styles.noteDelete}>
                     <Text style={styles.noteDeleteText}>X</Text>
                 </TouchableOpacity>
 
             </View>
+
+
 
         );
     }

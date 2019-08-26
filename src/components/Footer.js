@@ -7,7 +7,7 @@ export default class Footer extends Component{
         const showEditButton = false;
         return (
             <View>
-                <TouchableOpacity style={styles.addButton} underlayColor='#ff7043' onPress={()=>navigate('AddTask')}>
+                <TouchableOpacity style={styles.addButton} underlayColor='#ff7043' onPress={()=>navigate('AddTask', {insertTask: this.props.insertTask})}>
                     <Text style={{fontSize: 50, color: 'white'}}>+</Text>
                 </TouchableOpacity>
             </View>
