@@ -65,41 +65,46 @@ export default class AddTaskScreen extends Component {
             sisalto:"",
             deadline:"",
             sijainti:""
-        }, isSaveButtonVisible: true,
-            isEditButtonVisible: false
+        }, isAddButtonVisible: true,
+            isEditButtonVisible: false,
+            isSaveButtonVisible: false
         }
     }
 
     componentDidMount() {
         if (!this.props.navigation.getParam('showSaveAndAddPlaceButton', true)) {
-            this.setState({isSaveButtonVisible: false, isEditButtonVisible: true})
+            this.setState({isAddButtonVisible: false, isEditButtonVisible: true})
         }
     }
 
     render() {
-
+        const {navigate} = this.props.navigation;
+        const insertTask =  this.props.navigation.getParam('insertTask');
         return(
             <View style={styles.container}>
                 <Form
                     ref={c => this._form = c}
                     type={Task}
                     options={options}
-                    onChange={(text) => this.setState(text)}
-                    value={this.state}
+                    onChange={(text) => this.setState({task:text})}
+                    value={this.state.task}
                 />
                 <View style={styles.viewStyles}>
                     {(this.state.isEditButtonVisible) &&<Button
                     title="Muokkaa"
                     onPress={() => this.setState({isSaveButtonVisible: true, isEditButtonVisible: false}) }
                     />}
-                    {(this.state.isSaveButtonVisible) && <Button
-                        title="Lisää paikka"
+                    {(this.state.isAddButtonVisible) && <Button
+                        title="Lisää sijainti"
                         onPress={() => console.log(this.state)}
                     />}
-                    {(this.state.isSaveButtonVisible) && <Button
-                        title="Tallenna"
-                        onPress={() => console.log(this.state)}
+                    {(this.state.isAddButtonVisible) && <Button
+                        title="Lisää tehtävä"
+                        onPress={() => insertTask(this.state.task).then(
+                            () => navigate('Home'))}
                     />}
+                    {(this.state.isSaveButtonVisible) && <Button
+                        title="Tallenna tehtävä"/>}
                 </View>
             </View>
         );
