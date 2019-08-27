@@ -1,25 +1,30 @@
 //Täällä kattonavigointi kaikkien screenien välillä. (sanna)
 import React from 'react';
-import {createStackNavigator, createAppContainer} from "react-navigation";
+import {createStackNavigator, createAppContainer, createBottomTabNavigator} from "react-navigation";
 import HomeScreen from "./HomeScreen";
 import MenuScreen from "./MenuScreen";
 import AddTaskScreen from "./AddTaskScreen";
 import Mapview from "./Mapview";
 
 
-
-const Navigation = createStackNavigator(
+//Tuomaan kokeilu alkaa
+const Navigation = createBottomTabNavigator(
     {
-        Home: {
+        AllTasks: {
             screen: (props) => <HomeScreen {...props}  dbclient={props}/>,
         },
-        Menu: {
-                screen: MenuScreen,
+        WorkTasks: {
+            screen: (props) => <HomeScreen {...props}  dbclient={props}/>,
             },
-        AddTask: AddTaskScreen,
+        HomeTasks: {
+            screen: MenuScreen,
+        },
+        AddNewTask: {
+            screen: (props) => <AddTaskScreen {...props} dbclient={props}/>,
+        },
     },
     {
-        initialRouteName: 'Home',
+        initialRouteName: 'AllTasks',
         //headerMode hävittää täältä tuon backbuttonin, mutta tekee sen nyt kaikilla sivuilla ja ei estä fyysisen backbuttonin painamista.
         headerMode: "Menu"
         /*  defaultNavigationOptions:{
