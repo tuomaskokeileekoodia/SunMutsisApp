@@ -3,6 +3,7 @@ package com.sunmutsisfront;
 import android.app.Application;
 import android.util.Log;
 
+import com.airbnb.android.react.maps.MapsPackage;
 import com.facebook.react.PackageList;
 import com.facebook.hermes.reactexecutor.HermesExecutorFactory;
 import com.facebook.react.bridge.JavaScriptExecutorFactory;

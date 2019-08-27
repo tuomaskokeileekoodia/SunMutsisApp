@@ -4,6 +4,7 @@ import {createStackNavigator, createAppContainer} from "react-navigation";
 import HomeScreen from "./HomeScreen";
 import MenuScreen from "./MenuScreen";
 import AddTaskScreen from "./AddTaskScreen";
+import Mapview from "./Mapview";
 
 
 
@@ -20,7 +21,7 @@ const Navigation = createStackNavigator(
     {
         initialRouteName: 'Home',
         //headerMode hävittää täältä tuon backbuttonin, mutta tekee sen nyt kaikilla sivuilla ja ei estä fyysisen backbuttonin painamista.
-        headerMode: "none"
+        headerMode: "Menu"
         /*  defaultNavigationOptions:{
             title: 'Sun Mutsis',
               headerLeft: <Button onPress={() => props.navigation.navigate('tähän halutun screenin nimi')} title= "HOME?BACK?" />,
