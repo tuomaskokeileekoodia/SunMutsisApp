@@ -24,7 +24,7 @@ const Navigation = createStackNavigator(
         }
     },
     {
-        initialRouteName: 'AddTask',
+        initialRouteName: 'Home',
         //headerMode hävittää täältä tuon backbuttonin, mutta tekee sen nyt kaikilla sivuilla ja ei estä fyysisen backbuttonin painamista.
         headerMode: "Menu"
         /*  defaultNavigationOptions:{
