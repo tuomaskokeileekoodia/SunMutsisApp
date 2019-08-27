@@ -1,21 +1,24 @@
-import { Stitch, AnonymousCredential } from 'mongodb-stitch-react-native-sdk';
+import { Stitch, AnonymousCredential, StitchAppClientConfiguration, RemoteMongoClient } from 'mongodb-stitch-react-native-sdk';
 const MongoDB = require('mongodb-stitch-react-native-services-mongodb-remote');
+import RNCommunityAsyncStorage from "../RNCommunityAsyncStorage";
 import React, {Component} from 'react';
 import { View,Button, StyleSheet } from 'react-native';
 
 
 class LoginScreen extends Component {
-    state = {tasks: []};
+    state = {};
     componentDidMount() {
         this.loadClient();
+
     }
-    loadClient() {
-        Stitch.initializeDefaultAppClient('sunmutsisapp-zcbch').then(client => {
-            this.setState({ client });
-            const dbClient = client.getServiceClient(MongoDB.RemoteMongoClient.factory, "sunmutsisservice");
-            this.setState({db : dbClient.db("sunmutsisdatabase")});
-        });
-    }
+    loadClient = () => {
+        Stitch.initializeDefaultAppClient(
+            "sunmutsisapp-zcbch", new StitchAppClientConfiguration.Builder().withStorage(new RNCommunityAsyncStorage()).build()).then(
+            client => {
+                this.setState( { client });
+                const dbClient = client.getServiceClient(RemoteMongoClient.factory, "sunmutsisservice");
+                this.setState({db : dbClient.db("sunmutsisdatabase")});
+            })};
     authenticate() {
         return Stitch.defaultAppClient.auth.loginWithCredential(new AnonymousCredential())
             .then(user => {
@@ -24,25 +27,15 @@ class LoginScreen extends Component {
             })
             .catch(err=>console.error(err));
     }
-    loadCollection() {
-        const collection = this.state.db.collection("sunmutsiscollection");
-        return collection.find({}).toArray().then(foundTask => {
-            if (foundTask) {
-                //    foundTask.forEach(console.log);
-                this.setState({tasks: foundTask });
-                return 2
-            } else {
-                console.log("ei löytyny mitää")
-            }
-        })}
+
     render() {
         const {navigate} = this.props.navigation;
         return (
             <View style={styles.button}>
+                <Button onPress={this.authenticate} title={'AUTENTIKOI'}/>
                 <Button onPress={
                     () => this.authenticate().then(
-                        () => this.loadCollection().then(
-                            () => navigate('Home', {tasks: this.state.tasks})))}title={'LOGIN'}/>
+                        () => navigate('Home', {dbclient: this.state.db}))} title={'KIRJAUDU SISÄÄN'}/>
             </View>
         );
     }

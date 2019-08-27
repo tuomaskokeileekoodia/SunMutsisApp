@@ -32,18 +32,20 @@ export default class Task extends React.Component {
 
                 <CheckBox style={styles.checkbox} value={this.state.check} onChange={()=> this.checkBoxTest() } />
 
-                  <TouchableOpacity onPress={() => navigate('AddTask',{id: JSON.stringify(this.props.val._id), task: this.props.val.task,
-                      showSaveAndAddPlaceButton: showSaveAndAddPlaceButton})} >
+                  <TouchableOpacity onPress={() => navigate('AddTask',{id: JSON.stringify(this.props.val._id), task: this.props.val.aihe,
+                      showSaveAndAddPlaceButton: showSaveAndAddPlaceButton, updateTask: this.props.updateTask, taskId: this.props.val._id})} >
                 <Text style={styles.noteText}>{JSON.stringify(this.props.val._id)}</Text>
-                <Text style={styles.noteText}>{this.props.val.task}</Text>
+                <Text style={styles.noteText}>{this.props.val.aihe}</Text>
                   </TouchableOpacity>
 
 
-                <TouchableOpacity onPress={this.props.deleteMethod} style={styles.noteDelete}>
+                <TouchableOpacity onPress={() => this.props.deleteTask(this.props.val._id)} style={styles.noteDelete}>
                     <Text style={styles.noteDeleteText}>X</Text>
                 </TouchableOpacity>
 
             </View>
+
+
 
         );
     }
