@@ -4,7 +4,6 @@ import {Text, View, TouchableOpacity, StyleSheet, CheckBox} from 'react-native';
 
 // Propseina todo:n päivämäärä, "nimi" sekä delete-näppäin (Tuomas)
 export default class Task extends React.Component {
-
     //Constructor luotu pelkästään CheckBoxin toiminnallisuuden toteuttamisen vuoksi.
     // CheckBoxin klikkaaminen toteuttaa "checkBoxText"-funktion.
     // Funktio tarkistaa CheckBoxin tämänhetkisen staten, ja muuttaa sen käänteiseksi,
@@ -22,7 +21,6 @@ export default class Task extends React.Component {
             check:!this.state.check
         })
     }
-
 
     render() {
         const {navigate}=this.props.navigation;
