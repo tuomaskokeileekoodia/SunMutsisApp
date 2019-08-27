@@ -10,26 +10,21 @@ import GetcurrentLocation from "./GetCurrentLocation";
 
 const Navigation = createStackNavigator(
     {
-        Login: LoginScreen,
-        Home: HomeScreen,//tähän perään saa valumaan propseja. Selvitä.
-        Menu: MenuScreen,
-        MapWork: MapviewWork,
-        MapHome: MapviewHome,
-        AddTask: AddTaskScreen,
-        CurrentLocation: GetcurrentLocation,
-
-    },
-    {
         Home: {
             screen: (props) => <HomeScreen {...props}  dbclient={props}/>,
         },
         Menu: {
                 screen: MenuScreen,
             },
-        AddTask: AddTaskScreen,
+        AddTask: {
+            screen: AddTaskScreen,
+        },
+        MapviewWork: {
+            screen: MapviewWork,
+        }
     },
     {
-        initialRouteName: 'Home',
+        initialRouteName: 'AddTask',
         //headerMode hävittää täältä tuon backbuttonin, mutta tekee sen nyt kaikilla sivuilla ja ei estä fyysisen backbuttonin painamista.
         headerMode: "Menu"
         /*  defaultNavigationOptions:{
