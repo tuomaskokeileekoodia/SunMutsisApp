@@ -21,7 +21,7 @@ const formStyles = {
     },
     controlLabel: {
         normal: {
-            color: 'blue',
+            color: 'white',
             fontSize: 18,
             marginBottom: 7,
             fontWeight: '600'
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         marginTop: 50,
         padding: 20,
-        backgroundColor: '#ffffff',
+        backgroundColor: '#46529c',
     },
     viewStyles: {
         flexDirection: 'row',

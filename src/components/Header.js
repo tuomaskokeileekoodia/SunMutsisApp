@@ -1,7 +1,7 @@
 // Header, joka funktiona tuotetaan näkyville joka sivulle ylös. Korvaa perus Header-elementin,
 // jonka muokkaus osoittautui liian vaikeaksi.(Lauri)
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, ImageBackground} from 'react-native';
 import Hamburger from 'react-native-hamburger';
 
 const Header = () => {
@@ -10,8 +10,9 @@ const Header = () => {
     //sitä en vielä tiedä... (Lauri)
     return (
         <View style={viewStyle}>
-            <Hamburger/>
-            <Text style={textStyle} onPress={()=> alert('Soita äidille!')}>Tässä Heederi</Text>
+            <ImageBackground source={require('./kuva.png')} style={{width: '100%', height: '100%', opacity: 1}}>
+                <Text style={textStyle} onPress={()=> alert('Soita äidille!')}>Sun Mutsis</Text>
+            </ImageBackground>
         </View>
     )
 };
@@ -21,22 +22,30 @@ const styles = {
     viewStyle: {
         flexDirection: 'row',
         // Pistää elementit riviin (Lauri)
-        backgroundColor: '#1F9',
+        backgroundColor: '#46529c',
         height: 100,
-        paddingTop: 15,
+        //paddingTop: 15,
         // ym lisää reunusta tekstin ja view elementin reunan väliin
-        paddingLeft: 20,
-        paddingRight: 20,
+        //paddingLeft: 20,
+        //paddingRight: 20,
         // sama mutta sivuille.
+        //justifyContent: 'center',
+        //textAlign: 'center',
+        //textAlignVertical: 'center',
+        justifyContent: 'center',
         alignItems: 'center',
-        justifyContent: 'space-between'
         // Tämä lisää väliä elementtien välille. (Lauri)
     },
     textStyle: {
+        paddingTop: 15,
         fontFamily: 'monospace',
-        fontSize: 40,
+        fontSize: 50,
         fontWeight: '700',
-        color: '#FFF'
+        //opacity: 1,
+        color: '#FFF',
+        textAlign: 'center',
+        justifyContent: 'center',
+        alignItems: 'center',
     }
 
 };

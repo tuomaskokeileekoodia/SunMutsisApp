@@ -1,6 +1,7 @@
 import React from 'react';
 import {Text, View, TouchableOpacity, StyleSheet, CheckBox} from 'react-native';
-
+import { Ionicons } from "@expo/vector-icons";
+import { Icon } from "react-native-elements";
 
 // Propseina todo:n päivämäärä, "nimi" sekä delete-näppäin (Tuomas)
 export default class Task extends React.Component {
@@ -42,9 +43,12 @@ export default class Task extends React.Component {
 
 
                 <TouchableOpacity onPress={this.props.deleteMethod} style={styles.noteDelete}>
-                    <Text style={styles.noteDeleteText}>X</Text>
+                    <Icon style={styles.noteDeleteText}
+                            name="delete"
+                            color='#46529c'
+                            opacity={0.5}
+                        />
                 </TouchableOpacity>
-
             </View>
 
         );
@@ -58,7 +62,7 @@ const styles = StyleSheet.create({
         padding: 20,
         paddingRight: 100,
         borderBottomWidth: 2,
-        borderBottomColor: '#ededed',
+        borderBottomColor: '#46529c',
     },
     noteText: {
         paddingLeft: 10,
@@ -67,7 +71,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'red',
+        //backgroundColor: 'blue',
         padding: 10,
         top: 10,
         bottom: 10,

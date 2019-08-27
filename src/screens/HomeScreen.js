@@ -12,25 +12,8 @@ export default class HomeScreen extends Component {
         const testi =  'testi';
     return (
         <View>
-            <NavBar/>
             <Main tasks={tasks} {...this.props}/>
-            {/*<Text style={styles.saatanallinenTeksti}>Ystävä</Text>*/}
             <Footer testi={testi} {...this.props} />
         </View>
     );
 }};
-//etsi style joka hävittää buttonin
-//
-const styles = StyleSheet.create({
-    text:{
-        fontSize: 30
-    },
-    saatanallinenTeksti:{
-        fontSize: 50,
-        color: 'red'
-    }
-});
-
-
-
-
