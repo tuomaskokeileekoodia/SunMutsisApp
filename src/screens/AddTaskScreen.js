@@ -11,31 +11,6 @@ const Task = t.struct({
     sijainti: t.String
 });
 
-// Lomakkeen muotoilu (Samu)
-const formStyles = {
-    ...Form.stylesheet,
-    formGroup: {
-        normal: {
-            marginBottom: 10
-        },
-    },
-    controlLabel: {
-        normal: {
-            color: 'blue',
-            fontSize: 18,
-            marginBottom: 7,
-            fontWeight: '600'
-        },
-        // Virheen sattuessa muotoilu
-        error: {
-            color: 'red',
-            fontSize: 18,
-            marginBottom: 7,
-            fontWeight: '600'
-        }
-    }
-};
-
 const options = {
     fields: {
         aihe: {
@@ -99,7 +74,8 @@ export default class AddTaskScreen extends Component {
                     />}
                     {(this.state.isAddButtonVisible) && <Button
                         title="Lisää sijainti"
-                        onPress={() => console.log(this.state)}
+                        onPress={()=> navigate('MapWork')}
+                      //  onPress={() => console.log(this.state)}
                     />}
                     {(this.state.isAddButtonVisible) && <Button
                         title="Lisää tehtävä"
@@ -129,3 +105,27 @@ const styles = StyleSheet.create({
     }
 });
 
+// Lomakkeen muotoilu (Samu)
+const formStyles = {
+    ...Form.stylesheet,
+    formGroup: {
+        normal: {
+            marginBottom: 10
+        },
+    },
+    controlLabel: {
+        normal: {
+            color: 'blue',
+            fontSize: 18,
+            marginBottom: 7,
+            fontWeight: '600'
+        },
+        // Virheen sattuessa muotoilu
+        error: {
+            color: 'red',
+            fontSize: 18,
+            marginBottom: 7,
+            fontWeight: '600'
+        }
+    }
+};
