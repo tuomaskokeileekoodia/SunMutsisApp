@@ -23,6 +23,7 @@ export default class Mapview extends React.Component{
     }
 }
 
+
 const styles = StyleSheet.create({
     container: {
         ...StyleSheet.absoluteFillObject,
