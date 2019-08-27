@@ -36,7 +36,6 @@ export default class Task extends React.Component {
 
                   <TouchableOpacity onPress={() => navigate('AddTask',{id: JSON.stringify(this.props.val._id), task: this.props.val.aihe,
                       showSaveAndAddPlaceButton: showSaveAndAddPlaceButton, updateTask: this.props.updateTask, taskId: this.props.val._id})} >
-                <Text style={styles.noteText}>{JSON.stringify(this.props.val._id)}</Text>
                 <Text style={styles.noteText}>{this.props.val.aihe}</Text>
                   </TouchableOpacity>
 

@@ -1,21 +1,24 @@
 //Täällä kattonavigointi kaikkien screenien välillä. (sanna)
 import React from 'react';
 import {createStackNavigator, createAppContainer} from "react-navigation";
-import LoginScreen from "./LoginScreen";
 import HomeScreen from "./HomeScreen";
 import MenuScreen from "./MenuScreen";
 import AddTaskScreen from "./AddTaskScreen";
 
 
+
 const Navigation = createStackNavigator(
     {
-        Login: LoginScreen,
-        Home: HomeScreen,//tähän perään saa valumaan propseja. Selvitä.
-        Menu: MenuScreen,
+        Home: {
+            screen: (props) => <HomeScreen {...props}  dbclient={props}/>,
+        },
+        Menu: {
+                screen: MenuScreen,
+            },
         AddTask: AddTaskScreen,
     },
     {
-        initialRouteName: 'Login',
+        initialRouteName: 'Home',
         //headerMode hävittää täältä tuon backbuttonin, mutta tekee sen nyt kaikilla sivuilla ja ei estä fyysisen backbuttonin painamista.
         headerMode: "none"
         /*  defaultNavigationOptions:{

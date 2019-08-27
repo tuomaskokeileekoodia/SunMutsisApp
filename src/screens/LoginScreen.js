@@ -7,10 +7,11 @@ import { View,Button, StyleSheet } from 'react-native';
 
 class LoginScreen extends Component {
     state = {};
-    componentDidMount() {
+        componentDidMount() {
         this.loadClient();
-
     }
+
+
     loadClient = () => {
         Stitch.initializeDefaultAppClient(
             "sunmutsisapp-zcbch", new StitchAppClientConfiguration.Builder().withStorage(new RNCommunityAsyncStorage()).build()).then(
@@ -35,7 +36,7 @@ class LoginScreen extends Component {
                 <Button onPress={this.authenticate} title={'AUTENTIKOI'}/>
                 <Button onPress={
                     () => this.authenticate().then(
-                        () => navigate('Home', {dbclient: this.state.db}))} title={'KIRJAUDU SISÄÄN'}/>
+                        () => navigate('App', {dbclient: this.state.db}))} title={'KIRJAUDU SISÄÄN'}/>
             </View>
         );
     }
@@ -45,4 +46,5 @@ const styles = StyleSheet.create({
         marginTop: 300,
     },
 });
+
 export default LoginScreen;
