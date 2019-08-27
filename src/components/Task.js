@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, View, TouchableOpacity, StyleSheet, CheckBox} from 'react-native';
-
+import { Icon } from "react-native-elements";  // tätä käytetään TOuchableOpacity/deletemetodissa, pitäisi näkyä roskakori ( samu )
 
 // Propseina todo:n päivämäärä, "nimi" sekä delete-näppäin (Tuomas)
 export default class Task extends React.Component {
@@ -32,16 +32,18 @@ export default class Task extends React.Component {
 
                 <CheckBox style={styles.checkbox} value={this.state.check} onChange={()=> this.checkBoxTest() } />
 
-                  <TouchableOpacity onPress={() => navigate('AddTask',{id: JSON.stringify(this.props.val._id), task: this.props.val.aihe,
-                      showSaveAndAddPlaceButton: showSaveAndAddPlaceButton, updateTask: this.props.updateTask, taskId: this.props.val._id})} >
-                <Text style={styles.noteText}>{this.props.val.aihe}</Text>
-                  </TouchableOpacity>
-
-
-                <TouchableOpacity onPress={() => this.props.deleteTask(this.props.val._id)} style={styles.noteDelete}>
-                    <Text style={styles.noteDeleteText}>X</Text>
+                <TouchableOpacity onPress={() => navigate('AddTask',{id: JSON.stringify(this.props.val._id), task: this.props.val.aihe,
+                    showSaveAndAddPlaceButton: showSaveAndAddPlaceButton, updateTask: this.props.updateTask, taskId: this.props.val._id})} >
+                    <Text style={styles.noteText}>{this.props.val.aihe}</Text>
                 </TouchableOpacity>
 
+                <TouchableOpacity onPress={this.props.deleteMethod} style={styles.noteDelete}>
+                    <Icon style={styles.noteDeleteText}
+                          name="delete"
+                          color='#46529c'
+                          opacity={0.5}
+                    />
+                </TouchableOpacity>
             </View>
 
 
@@ -57,7 +59,7 @@ const styles = StyleSheet.create({
         padding: 20,
         paddingRight: 100,
         borderBottomWidth: 2,
-        borderBottomColor: '#ededed',
+        borderBottomColor: '#46529c',
     },
     noteText: {
         paddingLeft: 10,
@@ -66,7 +68,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'red',
+        //backgroundColor: 'blue',
         padding: 10,
         top: 10,
         bottom: 10,
