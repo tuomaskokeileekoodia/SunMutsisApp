@@ -3,17 +3,19 @@ import { StyleSheet, View, Button, BackHandler} from 'react-native';
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import Main from "../components/Main";
+import Header from "../components/Header";
+
 
 export default class HomeScreen extends Component {
     state = {tasks:[]};
 
     componentDidMount() {
-        this.loadCollection();
+       this.loadCollection();
     }
 
 
     loadCollection = () => {
-        const collection = this.props.navigation.getParam("dbclient").collection("sunmutsiscollection");
+        const collection = this.props.screenProps.dbclient.collection("sunmutsiscollection");
             collection.find({}).toArray().then(foundTask => {
             if (foundTask) {
                 //foundTask.forEach(console.log);
@@ -23,7 +25,7 @@ export default class HomeScreen extends Component {
             }
         })};
     insertTask = (task) => {
-        const collection = this.props.navigation.getParam("dbclient").collection("sunmutsiscollection");
+        const collection = this.props.screenProps.dbclient.collection("sunmutsiscollection");
         return collection.insertOne(task).then(result => {
             console.log(`Successfully inserted item with _id: ${result.insertedId}`);
             this.loadCollection();
@@ -32,7 +34,7 @@ export default class HomeScreen extends Component {
             .catch(err => console.error(`Failed to insert item: ${err}`))
     };
     updateTask = (id, task) => {
-        const collection = this.props.navigation.getParam("dbclient").collection("sunmutsiscollection");
+        const collection = this.props.screenProps.dbclient.collection("sunmutsiscollection");
         return collection.updateOne(id,task).then(result => {
             if (result.modifiedCount === 1) {
                 console.log(`Successfully updated ${result.modifiedCount} row`);
@@ -47,7 +49,7 @@ export default class HomeScreen extends Component {
             .catch(err => console.error(`Failed to update item: ${err}`))
     };
     deleteTask = (id) => {
-        const collection = this.props.navigation.getParam("dbclient").collection("sunmutsiscollection");
+        const collection = this.props.screenProps.dbclient.collection("sunmutsiscollection");
         collection.deleteOne( { _id: id}).then(result => {
             if (result.deletedCount === 1) {
                 console.log(`Succesfully deleted ${result.deletedCount} row`);
@@ -66,6 +68,7 @@ export default class HomeScreen extends Component {
 
     return (
         <View>
+            <Header/>
             <NavBar/>
             <Main tasks={this.state.tasks} deleteTask={this.deleteTask} updateTask={this.updateTask} {...this.props}/>
             <Footer {...this.props} insertTask={this.insertTask}/>
