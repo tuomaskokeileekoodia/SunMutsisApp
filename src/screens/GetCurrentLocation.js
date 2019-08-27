@@ -48,8 +48,8 @@ export default class GetCurrentLocation extends Component{
                 {location ? (
                     <Text style={styles.location}>
                         {JSON.stringify(location.longitude)}
-                        {'\n'}
-                        {JSON.stringify(location.latitude)}
+                {'\n'}
+                {JSON.stringify(location.latitude)}
                     </Text>
                 ) : null}
             </View>
