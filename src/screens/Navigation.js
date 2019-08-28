@@ -5,7 +5,7 @@ import HomeScreen from "./HomeScreen";
 import MenuScreen from "./MenuScreen";
 import AddTaskScreen from "./AddTaskScreen";
 import { Icon } from 'react-native-elements';
-// import Icon from 'react-native-vector-icons/Ionicons';
+
 // import Mapview from "./Mapview";
 import MapviewWork from "./MapviewWork";
 // import MapviewHome from "./MapviewHome";
@@ -20,7 +20,7 @@ const Navigation = createBottomTabNavigator(
                 tabBarLabel: 'Kaikki tehtävät',
                 tabBarIcon: ({tintColor}) => (
                     <Icon
-                        name="whatshot"
+                        name="format-list-bulleted"
                         color={tintColor}
                         size={25}/>
                 ),
