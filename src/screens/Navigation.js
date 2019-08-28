@@ -9,6 +9,8 @@ import Mapview from "./Mapview";
 
 //Tuomaan kokeilu alkaa
 const Navigation = createBottomTabNavigator(
+
+
     {
         AllTasks: {
             screen: (props) => <HomeScreen {...props}  dbclient={props}/>,
