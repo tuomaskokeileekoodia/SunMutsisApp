@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Button, TextInput } from 'react-native';
 import t from 'tcomb-form-native';
+import SelectLocation from '../components/SelectLocation';
 
 const Form = t.form.Form;
 
@@ -8,33 +9,8 @@ const Task = t.struct({
     aihe: t.String,
     kuvaus: t.String,
     deadline: t.String,
-    sijainti: t.String
+   // sijainti: t.String
 });
-
-// Lomakkeen muotoilu (Samu)
-const formStyles = {
-    ...Form.stylesheet,
-    formGroup: {
-        normal: {
-            marginBottom: 10
-        },
-    },
-    controlLabel: {
-        normal: {
-            color: 'blue',
-            fontSize: 18,
-            marginBottom: 7,
-            fontWeight: '600'
-        },
-        // Virheen sattuessa muotoilu
-        error: {
-            color: 'red',
-            fontSize: 18,
-            marginBottom: 7,
-            fontWeight: '600'
-        }
-    }
-};
 
 const options = {
     fields: {
@@ -64,7 +40,7 @@ export default class AddTaskScreen extends Component {
             aihe: task,
             kuvaus:"",
             deadline:"",
-            sijainti:""
+         //   sijainti:""
         }, isAddButtonVisible: true,
             isEditButtonVisible: false,
             isSaveButtonVisible: false
@@ -92,6 +68,7 @@ export default class AddTaskScreen extends Component {
                     onChange={(text) => this.setState({task:text})}
                     value={this.state.task}
                 />
+                <SelectLocation/>
                 <View style={styles.viewStyles}>
                     {(this.state.isEditButtonVisible) &&<Button
                     title="Muokkaa"
@@ -99,7 +76,8 @@ export default class AddTaskScreen extends Component {
                     />}
                     {(this.state.isAddButtonVisible) && <Button
                         title="Lisää sijainti"
-                        onPress={() => console.log(this.state)}
+                        onPress={()=> navigate('MapviewWork')}  //onPressilla ohjautuu nyt vaan mapviewworkiin, täytyy päivittää sijainnin valinnaksi ( sanna )
+                      //  onPress={() => console.log(this.state)}
                     />}
                     {(this.state.isAddButtonVisible) && <Button
                         title="Lisää tehtävä"
@@ -129,3 +107,27 @@ const styles = StyleSheet.create({
     }
 });
 
+// Lomakkeen muotoilu (Samu)
+const formStyles = {
+    ...Form.stylesheet,
+    formGroup: {
+        normal: {
+            marginBottom: 10
+        },
+    },
+    controlLabel: {
+        normal: {
+            color: 'blue',
+            fontSize: 18,
+            marginBottom: 7,
+            fontWeight: '600'
+        },
+        // Virheen sattuessa muotoilu
+        error: {
+            color: 'red',
+            fontSize: 18,
+            marginBottom: 7,
+            fontWeight: '600'
+        }
+    }
+};

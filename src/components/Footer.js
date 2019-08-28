@@ -17,8 +17,8 @@ export default class Footer extends Component{
 
 const styles = StyleSheet.create({
     addButton: {
-        backgroundColor: '#56e4ff',
-        borderColor: '#53d8ff',
+        backgroundColor: '#ff9f00',
+        borderColor: '#9c4646',
         borderWidth: 1,
         height: 60,
         width: 60,
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
         zIndex: 20,
         // top: 480,
         // left: 290,
-        shadowColor: "#000000",
+        shadowColor: "#9c4646",
         shadowOpacity: 0.8,
         shadowRadius: 2,
         shadowOffset: {

@@ -5,11 +5,12 @@ import HomeScreen from "./HomeScreen";
 import MenuScreen from "./MenuScreen";
 import AddTaskScreen from "./AddTaskScreen";
 import Mapview from "./Mapview";
+import MapviewWork from "./MapviewWork";
+import MapviewHome from "./MapviewHome";
+import GetcurrentLocation from "./GetCurrentLocation";
 
 
-//Tuomaan kokeilu alkaa
 const Navigation = createBottomTabNavigator(
-
 
     {
         AllTasks: {
@@ -18,12 +19,18 @@ const Navigation = createBottomTabNavigator(
         WorkTasks: {
             screen: (props) => <HomeScreen {...props}  dbclient={props}/>,
             },
+
         HomeTasks: {
             screen: MenuScreen,
         },
-        AddNewTask: {
-            screen: (props) => <AddTaskScreen {...props} dbclient={props}/>,
+
+        AddTask: {
+            screen: AddTaskScreen,
         },
+        MapviewWork: {
+            screen: MapviewWork,
+        }
+
     },
     {
         initialRouteName: 'AllTasks',
