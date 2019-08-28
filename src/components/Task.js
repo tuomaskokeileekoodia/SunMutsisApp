@@ -80,6 +80,6 @@ const styles = StyleSheet.create({
         fontSize: 18,
     },
     checkbox: {
-        // backgroundColor: 'red',
+        // backgroundColor: 'blue',
     }
 });
