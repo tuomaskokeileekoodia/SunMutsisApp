@@ -4,10 +4,10 @@ import {createStackNavigator, createAppContainer, createBottomTabNavigator} from
 import HomeScreen from "./HomeScreen";
 import MenuScreen from "./MenuScreen";
 import AddTaskScreen from "./AddTaskScreen";
-import Mapview from "./Mapview";
+// import Mapview from "./Mapview";
 import MapviewWork from "./MapviewWork";
-import MapviewHome from "./MapviewHome";
-import GetcurrentLocation from "./GetCurrentLocation";
+// import MapviewHome from "./MapviewHome";
+// import GetcurrentLocation from "./GetCurrentLocation";
 
 
 const Navigation = createBottomTabNavigator(
