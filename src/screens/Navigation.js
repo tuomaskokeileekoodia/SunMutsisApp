@@ -22,6 +22,7 @@ const Navigation = createBottomTabNavigator(
             },
 
         HomeTasks: {
+
             screen: MenuScreen,
         },
 

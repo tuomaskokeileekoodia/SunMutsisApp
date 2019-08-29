@@ -3,7 +3,8 @@ const MongoDB = require('mongodb-stitch-react-native-services-mongodb-remote');
 import RNCommunityAsyncStorage from "../RNCommunityAsyncStorage";
 import React, {Component} from 'react';
 import { View,Button, StyleSheet } from 'react-native';
-import { GetCurrent } from "../components/GetCurrent";
+
+
 
 
 class LoginScreen extends Component {
@@ -34,9 +35,11 @@ class LoginScreen extends Component {
 
         const {navigate} = this.props.navigation;
         return (
-            <View style={styles.button, styles.viewbackground}>
-                <Button onPress={this.authenticate} title={'AUTENTIKOI'}/>
-                <Button onPress={
+
+            <View style={styles.button}>
+
+                    <Button onPress={this.authenticate} title={'AUTENTIKOI'}/>
+                    <Button onPress={
                     () => this.authenticate().then(
                         () => navigate('App', {dbclient: this.state.db}))} title={'KIRJAUDU SISÄÄN'}/>
             </View>
@@ -47,9 +50,6 @@ const styles = StyleSheet.create({
     button: {
         marginTop: 300,
     },
-    // viewbackground: {
-    //     background ima
-    // }
 });
 
 export default LoginScreen;

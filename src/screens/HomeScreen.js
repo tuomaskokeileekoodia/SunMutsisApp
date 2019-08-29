@@ -1,18 +1,51 @@
 import React, {Component} from 'react';
-import { StyleSheet, View, Button, BackHandler} from 'react-native';
-import NavBar from "../components/NavBar";
+import {StyleSheet, View, Button, BackHandler, Alert} from 'react-native';
 import Footer from "../components/Footer";
 import Main from "../components/Main";
 import Header from "../components/Header";
 import {CompareLocationRadius} from "../components/CompareLocationRadius";
+import Geolocation from "react-native-geolocation-service";
+
 
 
 export default class HomeScreen extends Component {
-    state = {tasks:[]};
+    state = {tasks:[],
+    longitude: 'unknown',
+    latitude: 'unknown',
 
-    componentDidMount() {
-       this.loadCollection();
+    };
+    watchId: ?number = null;
+    componentDidMount = () => {
+        this.loadCollection();
+        this.Sijainninhaku();
+
+        Geolocation.getCurrentPosition(
+            position => {
+                this.setState({latitude: position.coords.latitude, longitude: position.coords.longitude});
+            },
+            (error) => alert(error.message),
+            {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
+        );
+
+
+        this.watchId = Geolocation.watchPosition(
+            position => {
+                this.setState({
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude,
+                    error: null,
+
+                }), console.log('asema muuttuu. uusi sijainti: ', this.state.latitude, this.state.longitude)
+
+            },
+            (error) => this.setState({error: error.message}),
+            { enableHighAccuracy: true, timeout: 20000, maximumAge: 0},);
+        console.log('watch sijainti: ', this.state.latitude, this.state.longitude)
+
+
+
     }
+
 
 
     loadCollection = () => {
@@ -46,6 +79,7 @@ export default class HomeScreen extends Component {
                 return result.modifiedCount;
 
             }
+
         })
             .catch(err => console.error(`Failed to update item: ${err}`))
     };
@@ -63,19 +97,22 @@ export default class HomeScreen extends Component {
         })
             .catch(err => console.error(`Failed to delete task: ${err}`))
     };
-    Testisijainninhaku = () => {
-        new CompareLocationRadius();
+    Sijainninhaku = () => {
+        new CompareLocationRadius(this.state);
     };
+
     render() {
+
         const {navigate}=this.props.navigation;
+        // this.Sijainninhaku();
+
+
 
 
 
     return (
         <View>
-            <Button title='paikka' onPress={this.Testisijainninhaku}/>
             <Header/>
-            <NavBar/>
             <Main tasks={this.state.tasks} deleteTask={this.deleteTask} updateTask={this.updateTask} {...this.props}/>
             <Footer {...this.props} insertTask={this.insertTask}/>
         </View>

@@ -1,29 +1,32 @@
 import { isPointWithinRadius } from 'geolib';
-import { GetCurrent } from "./GetCurrent";
 
-export const CompareLocationRadius = async () => {
-    const current = await GetCurrent();
-    console.log('GetCurrent', current)
-    const latit = current.latitude;
+
+export const CompareLocationRadius = (variables) => {
+
+    // const current = await GetCurrent();
+    // console.log('GetCurrent', current)
+    const latit = variables.latitude;
     console.log('latit', latit);
-    const longit = current.longitude;
+    const longit = variables.longitude;
     console.log('longit', longit);
 
 
     if (isPointWithinRadius(
         {latitude: latit, longitude: longit},
-        {latitude: 60.109820, longitude: 24.442913},
-        5000
+        {latitude: 60.109226, longitude: 24.440453},
+        2000
     )) {
-        alert("Olet kotona. Ethän vain aio avata Netflixiä. Katsopa vaihtoehdot Todosta.");
+        alert("Tulit kotiin. Vaihdetaan kotilista: ");
+
     }
-    if (isPointWithinRadius(
+    else if (isPointWithinRadius(
         {latitude: latit, longitude: longit},
-        {latitude: 60.177252, longitude: 24.832446}
+        {latitude: 60.1795, longitude: 24.8348},
+        2000
     )){
-        alert("Olet töissä, älä mene suoraan kahvikoneelle! Kysy pomolta ohjeet")
+        alert("Tulit töihin. Vaihdetaan työlista: ");
     }else{
-        alert("Olet muualla. Tee mitä haluat")
+        alert("Olet muualla. Tee mitä haluat");
     }
 };
 
