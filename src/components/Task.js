@@ -43,6 +43,7 @@ export default class Task extends React.Component {
                           color='#46529c'
                           opacity={0.5}
                     />
+
                 </TouchableOpacity>
             </View>
 

@@ -9,7 +9,7 @@ const Task = t.struct({
     aihe: t.String,
     kuvaus: t.String,
     deadline: t.String,
-   // sijainti: t.String
+
 });
 
 const options = {

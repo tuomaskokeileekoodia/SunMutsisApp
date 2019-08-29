@@ -4,6 +4,7 @@ import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import Main from "../components/Main";
 import Header from "../components/Header";
+import {CompareLocationRadius} from "../components/CompareLocationRadius";
 
 
 export default class HomeScreen extends Component {
@@ -62,12 +63,17 @@ export default class HomeScreen extends Component {
         })
             .catch(err => console.error(`Failed to delete task: ${err}`))
     };
-
+    Testisijainninhaku = () => {
+        new CompareLocationRadius();
+    };
     render() {
         const {navigate}=this.props.navigation;
 
+
+
     return (
         <View>
+            <Button title='paikka' onPress={this.Testisijainninhaku}/>
             <Header/>
             <NavBar/>
             <Main tasks={this.state.tasks} deleteTask={this.deleteTask} updateTask={this.updateTask} {...this.props}/>
