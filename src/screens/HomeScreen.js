@@ -7,31 +7,34 @@ import NavBar from "../components/NavBar";
 import {CompareLocationRadius} from "../components/CompareLocationRadius";
 import Geolocation from "react-native-geolocation-service";
 
+
 export default class HomeScreen extends Component {
     state = {tasks:[],
-        longitude: null,
-        latitude: null,
-        timestamp: null,
-        error: null,
-        watchId: null,};
-    componentDidMount () {
+        longitude: 'unknown',
+        latitude: 'unknown',
+    };
+    watchId: ?number = null;
+    componentDidMount() {
         this.loadCollection();
+        this.Sijainninhaku();
+        Geolocation.getCurrentPosition(
+            position => {
+                this.setState({latitude: position.coords.latitude, longitude: position.coords.longitude});
+            },
+            (error) => alert(error.message),
+            {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
+        );
         this.watchId = Geolocation.watchPosition(
-            (position) => {
+            position => {
                 this.setState({
                     latitude: position.coords.latitude,
                     longitude: position.coords.longitude,
                     error: null,
-                }, console.log('asema muuttuu. uusi sijainti: ', this.state.latitude, this.state.longitude));
+                }), console.log('asema muuttuu. uusi sijainti: ', this.state.latitude, this.state.longitude)
             },
             (error) => this.setState({error: error.message}),
             { enableHighAccuracy: true, timeout: 20000, maximumAge: 0},);
         console.log('watch sijainti: ', this.state.latitude, this.state.longitude)
-    }
-    componentWillUnmount() {
-        console.log('leveys: ', this.state.latitude);
-        console.log('pituus', this.state.longitude);
-        Geolocation.clearWatch(this.watchId);
     }
 
 
