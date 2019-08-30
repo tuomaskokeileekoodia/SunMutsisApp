@@ -12,21 +12,11 @@ export default class HomeScreen extends Component {
     state = {tasks:[],
     longitude: 'unknown',
     latitude: 'unknown',
-
     };
     watchId: ?number = null;
     componentDidMount() {
         this.loadCollection();
         this.Sijainninhaku();
-
-        Geolocation.getCurrentPosition(
-            position => {
-                this.setState({latitude: position.coords.latitude, longitude: position.coords.longitude});
-            },
-            (error) => alert(error.message),
-            {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
-        );
-
 
         this.watchId = Geolocation.watchPosition(
             position => {
@@ -34,17 +24,12 @@ export default class HomeScreen extends Component {
                     latitude: position.coords.latitude,
                     longitude: position.coords.longitude,
                     error: null,
-
                 }), console.log('asema muuttuu. uusi sijainti: ', this.state.latitude, this.state.longitude)
-
             },
             (error) => this.setState({error: error.message}),
             { enableHighAccuracy: true, timeout: 20000, maximumAge: 0},);
         console.log('watch sijainti: ', this.state.latitude, this.state.longitude)
-
     }
-
-
 
     loadCollection = () => {
         const collection = this.props.screenProps.dbclient.collection("sunmutsiscollection");
@@ -104,10 +89,6 @@ export default class HomeScreen extends Component {
         const {navigate}=this.props.navigation;
         this.Sijainninhaku();
 
-
-
-
-
     return (
         <View>
             <Header/>
@@ -121,12 +102,7 @@ const styles = StyleSheet.create({
     text:{
         fontSize: 30
     },
-    saatanallinenTeksti:{
-        fontSize: 50,
-        color: 'red'
-    }
 });
-
 
 
 

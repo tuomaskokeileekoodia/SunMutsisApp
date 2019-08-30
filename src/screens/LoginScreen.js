@@ -2,14 +2,14 @@ import { Stitch, AnonymousCredential, StitchAppClientConfiguration, RemoteMongoC
 const MongoDB = require('mongodb-stitch-react-native-services-mongodb-remote');
 import RNCommunityAsyncStorage from "../RNCommunityAsyncStorage";
 import React, {Component} from 'react';
-import { View,Button, StyleSheet } from 'react-native';
+import {View, Button, StyleSheet, ImageBackground, TouchableOpacity, Text} from 'react-native';
 
 
 
 
 class LoginScreen extends Component {
     state = {};
-        componentDidMount() {
+    componentDidMount() {
         this.loadClient();
     }
 
@@ -35,6 +35,7 @@ class LoginScreen extends Component {
 
         const {navigate} = this.props.navigation;
         return (
+<<<<<<< HEAD
 
             <View style={styles.button}>
 
@@ -42,14 +43,58 @@ class LoginScreen extends Component {
                     <Button onPress={
                     () => this.authenticate().then(
                         () => navigate('App', {dbclient: this.state.db}))} title={'KIRJAUDU SISÄÄN'}/>
+=======
+            <View>
+                <View>
+                    <ImageBackground source={require('../components/mutsit.jpg')} style={{width: '100%', height: '100%', resizeMethod: 'cover', opacity: 0.8, zIndex: 1}}>
+                    </ImageBackground>
+                </View>
+                <View style={styles.button}>
+                    <TouchableOpacity onPress={
+                        () => this.authenticate().then(
+                            () => navigate('App', {dbclient: this.state.db}))} title={'KIRJAUDU SISÄÄN'}>
+                        <Text style={styles.text}>
+                            Aloita
+                        </Text>
+                    </TouchableOpacity>
+                </View>
+>>>>>>> fetch_head
             </View>
         );
     }
 }
 const styles = StyleSheet.create({
     button: {
+        //zIndex: 22
+        flex: 1,
         marginTop: 300,
+        position: 'absolute',
+        alignItems: 'center',
+        borderColor: '#46529c',
+        //borderWidth: 5,
+        width: 150,
+        height: 75,
+        //width: '80%',
+        borderRadius: 10,
+        //marginHorizontal: '50%',
+        //bottom: '25%',
+        //top: 0,
+        left: 132,
+        //right: '50%',
+        zIndex: 21,
+        justifyContent: 'center',
+        backgroundColor: '#46529c',
     },
+    text: {
+        position: 'relative',
+        alignItems: 'center',
+        fontFamily: 'monospace',
+        color: '#FFF',
+        textAlign: 'center',
+        //justifyContent: 'center',
+        fontSize: 30,
+        fontWeight: 'bold',
+    }
 });
 
 export default LoginScreen;

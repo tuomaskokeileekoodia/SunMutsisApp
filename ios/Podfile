@@ -27,7 +27,11 @@ target 'SunMutsisFront' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
+<<<<<<< HEAD
   pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-community/async-storage'
+=======
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+>>>>>>> fetch_head
 
   target 'SunMutsisFrontTests' do
     inherit! :search_paths
