@@ -4,44 +4,26 @@ import { Icon } from "react-native-elements";  // tätä käytetään TOuchableO
 
 // Propseina todo:n päivämäärä, "nimi" sekä delete-näppäin (Tuomas)
 export default class Task extends React.Component {
-    //Constructor luotu pelkästään CheckBoxin toiminnallisuuden toteuttamisen vuoksi.
-    // CheckBoxin klikkaaminen toteuttaa "checkBoxText"-funktion.
-    // Funktio tarkistaa CheckBoxin tämänhetkisen staten, ja muuttaa sen käänteiseksi,
-    // eli Truesta False ja Falsesta True. (Tuomas)
 
-    constructor() {
-        super();
-        this.state = {
-            checked: false
-        }
-    }
-    checkBoxTest() {
-        this.setState({
-            checked:!this.state.checked
-        });
+    updateCheckBox = () => {
         this.props.updateTask({_id: this.props.val._id},{aihe: this.props.val.aihe,
             kuvaus: this.props.val.kuvaus,
             deadline: this.props.val.deadline,
             sijainti: this.props.val.sijainti,
-            checked: !this.state.checked});
+            checked: !this.props.val.checked});
     };
-
     render() {
         const {navigate}=this.props.navigation;
         const showSaveAndAddPlaceButton = false;
+        console.log(this.props.val.checked);
         return (
-
             <View key={this.props.keyval} style={styles.note}>
-
-
-                <CheckBox style={styles.checkbox} value={this.state.checked} onChange={()=> this.checkBoxTest() } />
-
+                <CheckBox style={styles.checkbox} value={this.props.val.checked} onChange={()=> this.updateCheckBox()} />
                 <TouchableOpacity onPress={() => navigate('AddTask',{id: JSON.stringify(this.props.val._id), task: this.props.val.aihe,
                     showSaveAndAddPlaceButton: showSaveAndAddPlaceButton, updateTask: this.props.updateTask, taskId: this.props.val._id})} >
-                    <Text style={this.state.checked ? styles.noteTextCompleted : styles.noteText}>{this.props.val.aihe}</Text>
+                    <Text style={this.props.val.checked ? styles.noteTextCompleted : styles.noteText}>{this.props.val.aihe}</Text>
                 </TouchableOpacity>
-
-                <TouchableOpacity onPress={this.props.deleteMethod} style={styles.noteDelete}>
+                <TouchableOpacity onPress={()=>this.props.deleteTask(this.props.val._id)} style={styles.noteDelete}>
                     <Icon style={styles.noteDeleteText}
                           name="delete"
                           color='#46529c'
@@ -49,12 +31,11 @@ export default class Task extends React.Component {
                     />
                 </TouchableOpacity>
             </View>
-
-
-
         );
     }
 }
+
+
 
 const styles = StyleSheet.create({
     note: {

@@ -1,16 +1,40 @@
 import React, {Component} from 'react';
 import { StyleSheet, View, Button, BackHandler} from 'react-native';
-import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import Main from "../components/Main";
 import Header from "../components/Header";
+import NavBar from "../components/NavBar";
+import {CompareLocationRadius} from "../components/CompareLocationRadius";
+import Geolocation from "react-native-geolocation-service";
 
 
 export default class HomeScreen extends Component {
-    state = {tasks:[]};
-
+    state = {tasks:[],
+        longitude: 'unknown',
+        latitude: 'unknown',
+    };
+    watchId: ?number = null;
     componentDidMount() {
-       this.loadCollection();
+        this.loadCollection();
+        this.Sijainninhaku();
+        Geolocation.getCurrentPosition(
+            position => {
+                this.setState({latitude: position.coords.latitude, longitude: position.coords.longitude});
+            },
+            (error) => alert(error.message),
+            {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
+        );
+        this.watchId = Geolocation.watchPosition(
+            position => {
+                this.setState({
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude,
+                    error: null,
+                }), console.log('asema muuttuu. uusi sijainti: ', this.state.latitude, this.state.longitude)
+            },
+            (error) => this.setState({error: error.message}),
+            { enableHighAccuracy: true, timeout: 20000, maximumAge: 0},);
+        console.log('watch sijainti: ', this.state.latitude, this.state.longitude)
     }
 
 
@@ -62,9 +86,13 @@ export default class HomeScreen extends Component {
         })
             .catch(err => console.error(`Failed to delete task: ${err}`))
     };
+    Sijainninhaku = () => {
+        new CompareLocationRadius(this.state);
+    };
 
     render() {
         const {navigate}=this.props.navigation;
+        this.Sijainninhaku();
 
     return (
         <View>
@@ -80,12 +108,8 @@ const styles = StyleSheet.create({
     text:{
         fontSize: 30
     },
-    saatanallinenTeksti:{
-        fontSize: 50,
-        color: 'red'
-    }
-});
 
+});
 
 
 
