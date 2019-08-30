@@ -15,7 +15,7 @@ export default class HomeScreen extends Component {
 
     };
     watchId: ?number = null;
-    componentDidMount = () => {
+    componentDidMount() {
         this.loadCollection();
         this.Sijainninhaku();
 
@@ -41,8 +41,6 @@ export default class HomeScreen extends Component {
             (error) => this.setState({error: error.message}),
             { enableHighAccuracy: true, timeout: 20000, maximumAge: 0},);
         console.log('watch sijainti: ', this.state.latitude, this.state.longitude)
-
-
 
     }
 
@@ -104,7 +102,7 @@ export default class HomeScreen extends Component {
     render() {
 
         const {navigate}=this.props.navigation;
-        // this.Sijainninhaku();
+        this.Sijainninhaku();
 
 
 

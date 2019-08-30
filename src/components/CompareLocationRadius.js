@@ -13,10 +13,10 @@ export const CompareLocationRadius = (variables) => {
 
     if (isPointWithinRadius(
         {latitude: latit, longitude: longit},
-        {latitude: 60.109226, longitude: 24.440453},
+        {latitude: 60.1088983, longitude:  24.4429},
         2000
     )) {
-        alert("Tulit kotiin. Vaihdetaan kotilista: ");
+        alert("Älä vielä rojahda sohvalle. Katsopa kotilista! T. äiti");
 
     }
     else if (isPointWithinRadius(
@@ -24,9 +24,7 @@ export const CompareLocationRadius = (variables) => {
         {latitude: 60.1795, longitude: 24.8348},
         2000
     )){
-        alert("Tulit töihin. Vaihdetaan työlista: ");
-    }else{
-        alert("Olet muualla. Tee mitä haluat");
+        alert("Olet töissä. Työnkuvaasi ei kuulu Instagram, joten aloittaisitko kiltisti sen mistä sinulle maksetaan. T. äiti");
     }
 };
 
