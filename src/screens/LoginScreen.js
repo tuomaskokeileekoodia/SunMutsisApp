@@ -35,31 +35,20 @@ class LoginScreen extends Component {
 
         const {navigate} = this.props.navigation;
         return (
-<<<<<<< HEAD
 
-            <View style={styles.button}>
-
-                    <Button onPress={this.authenticate} title={'AUTENTIKOI'}/>
-                    <Button onPress={
-                    () => this.authenticate().then(
-                        () => navigate('App', {dbclient: this.state.db}))} title={'KIRJAUDU SISÄÄN'}/>
-=======
-            <View>
                 <View>
                     <ImageBackground source={require('../components/mutsit.jpg')} style={{width: '100%', height: '100%', resizeMethod: 'cover', opacity: 0.8, zIndex: 1}}>
                     </ImageBackground>
+                    <View style={styles.button}>
+                        <TouchableOpacity onPress={
+                            () => this.authenticate().then(
+                                () => navigate('App', {dbclient: this.state.db}))} title={'KIRJAUDU SISÄÄN'}>
+                            <Text style={styles.text}>
+                                Aloita
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
-                <View style={styles.button}>
-                    <TouchableOpacity onPress={
-                        () => this.authenticate().then(
-                            () => navigate('App', {dbclient: this.state.db}))} title={'KIRJAUDU SISÄÄN'}>
-                        <Text style={styles.text}>
-                            Aloita
-                        </Text>
-                    </TouchableOpacity>
-                </View>
->>>>>>> fetch_head
-            </View>
         );
     }
 }
