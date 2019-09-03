@@ -8,28 +8,19 @@ import { Icon } from 'react-native-elements';
 
 // import Mapview from "./Mapview";
 import MapviewWork from "./MapviewWork";
+import {CompareLocationRadius} from "../components/CompareLocationRadius";
 // import MapviewHome from "./MapviewHome";
 // import GetcurrentLocation from "./GetCurrentLocation";
 
 
-const Navigation = createBottomTabNavigator(
+const Navigation = createStackNavigator(
+
     {
-        AllTasks: {
-            screen: (props) => <HomeScreen {...props} dbclient={props}/>,
-            navigationOptions: {
-                tabBarLabel: 'Kaikki tehtävät',
-                tabBarIcon: ({tintColor}) => (
-                    <Icon
-                        name="format-list-bulleted"
-                        color={tintColor}
-                        size={25}/>
-                ),
-                // Aktiivisen tabin värjäys. Jos haluaa palauttaa oletuksen,
-                // vaaleansinisen värin, poista koko tabBarOptions-kohta (Tuomas)
-                tabBarOptions: {
-                    activeTintColor: '#46529c'
-                }
-            }
+        Home: {
+            screen: (props) => <HomeScreen {...props}  dbclient={props}/>,
+        },
+        Menu: {
+            screen: MenuScreen,
         },
         WorkTasks: {
             screen: (props) => <HomeScreen {...props} dbclient={props}/>,
@@ -48,6 +39,7 @@ const Navigation = createBottomTabNavigator(
         },
 
         HomeTasks: {
+
             screen: MenuScreen,
             navigationOptions: {
                 tabBarLabel: 'Kotitehtävät',
@@ -82,7 +74,7 @@ const Navigation = createBottomTabNavigator(
 
 
     {
-        initialRouteName: 'AllTasks',
+        initialRouteName: 'Home',
         //headerMode hävittää täältä tuon backbuttonin, mutta tekee sen nyt kaikilla sivuilla ja ei estä fyysisen backbuttonin painamista.
         headerMode: "Menu"
         /*  defaultNavigationOptions:{

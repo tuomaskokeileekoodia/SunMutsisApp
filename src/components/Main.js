@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, View, TextInput, ScrollView, TouchableOpacity, StyleSheet} from 'react-native';
-import { CheckBox } from 'react-native-elements'
+
 
 // Main- ja Task -luokat korvaavat aiemman MainComponent -luokan (Tuomas)
 // Task.js:ssä propseina näytettävien todo:n päivämäärä, "nimi" sekä delete-näppäin (Tuomas)

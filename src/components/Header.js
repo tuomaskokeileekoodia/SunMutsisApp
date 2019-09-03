@@ -2,17 +2,21 @@
 // jonka muokkaus osoittautui liian vaikeaksi.(Lauri)
 
 import React from 'react';
-import {View, Text, ImageBackground} from 'react-native';   // img backround, kuva.png lisätty headeriin ( samu )
+import {View, Text, ImageBackground} from 'react-native';   // img backround, aalto.png lisätty headeriin ( samu )
 import Hamburger from 'react-native-hamburger';
 
 const Header = () => {
-    const { textStyle, viewStyle  } = styles;
-//Haasteena tässä on saada navigaatio toimimaan. Nappeja voi rakennella, mutta saako niillä liikkumista sivuilla,
-    //sitä en vielä tiedä... (Lauri)
-    return (
-        <View style={viewStyle}>
-            <ImageBackground source={require('./kuva.png')} style={{width: '100%', height: '100%', opacity: 1}}>
-                <Text style={textStyle} onPress={()=> alert('Soita äidille!')}>Sun Mutsis</Text>
+
+    const date = new Date().getDate(); //Current Date
+    const month = new Date().getMonth() + 1; //Current Month
+    const year = new Date().getFullYear(); //Current Year
+    const now = date + '/' + month + '/' + year;
+
+    return(
+        <View style={styles.viewStyle}>
+            <ImageBackground source={require('../assets/aalto.png')} style={{width: '100%', height: '100%', opacity: 1}}>
+                <Text style={styles.textStyle} onPress={()=> alert('Soita äidille!')}>Sun Mutsis</Text>
+                <Text style={styles.dateStyle}>{now}</Text>
             </ImageBackground>
         </View>
     )
@@ -47,7 +51,12 @@ const styles = {
         textAlign: 'center',
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    dateStyle: {
+        color: '#FFF',
+        textAlign: 'left',
     }
+
 
 };
 export default Header;
