@@ -27,7 +27,7 @@
 <!--                Tämä täytyy aktivoida, jotta saat käyttöösi karttatoiminnallisuudet. Hanki API KEY Googlelta. -->
 <!--                meta-data&ndash;&gt;-->
 <!--                android:name="com.google.android.geo.API_KEY"-->
-<!--                android:value=/>-->
+<!--                android:value=TÄHÄNTULEESEKEY/>-->
     </application>
 
 </manifest>
