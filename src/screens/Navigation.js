@@ -11,11 +11,14 @@ import {CompareLocationRadius} from "../components/CompareLocationRadius";
 // import GetcurrentLocation from "./GetCurrentLocation";
 
 
-const Navigation = createBottomTabNavigator(
+const Navigation = createStackNavigator(
 
     {
-        AllTasks: {
+        Home: {
             screen: (props) => <HomeScreen {...props}  dbclient={props}/>,
+        },
+        Menu: {
+            screen: MenuScreen,
         },
         WorkTasks: {
             screen: (props) => <HomeScreen {...props}  dbclient={props}/>,
@@ -35,7 +38,7 @@ const Navigation = createBottomTabNavigator(
 
     },
     {
-        initialRouteName: 'AllTasks',
+        initialRouteName: 'Home',
         //headerMode hävittää täältä tuon backbuttonin, mutta tekee sen nyt kaikilla sivuilla ja ei estä fyysisen backbuttonin painamista.
         headerMode: "Menu"
         /*  defaultNavigationOptions:{
