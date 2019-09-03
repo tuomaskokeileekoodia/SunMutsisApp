@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, StyleSheet, Button, TextInput } from 'react-native';
 import t from 'tcomb-form-native';
 import SelectLocation from '../components/SelectLocation';
+import DatePicker from 'react-native-datepicker';
 
 const Form = t.form.Form;
 
@@ -9,7 +10,7 @@ const Task = t.struct({
     aihe: t.String,
     kuvaus: t.String,
     deadline: t.String,
-   // sijainti: t.String
+
 });
 
 const options = {
@@ -36,10 +37,11 @@ export default class AddTaskScreen extends Component {
         super(props);
         const task = this.props.navigation.getParam('task', '');
 
+
         this.state = {task: {
             aihe: task,
             kuvaus:"",
-            deadline:"",
+          //  deadline:"",
          //   sijainti:""
         }, isAddButtonVisible: true,
             isEditButtonVisible: false,
@@ -67,6 +69,32 @@ export default class AddTaskScreen extends Component {
                     options={options}
                     onChange={(text) => this.setState({task:text})}
                     value={this.state.task}
+                />
+                <DatePicker
+                    style={{
+                        width: 370,
+                        color: '#46529c',
+                    }}
+                    date={this.state.date}
+                    mode="date"
+                    placeholder="Valitse tehtävän deadline"
+                    format="YYYY-MM-DD"
+                    minDate="2019-01-01"
+                    maxDate="2021-01-01"
+                    confirmBtnText="Vahvista"
+                    cancelBtnText="Peruuta"
+                    customStyles={{
+                        dateIcon: {
+                            position: 'absolute',
+                            left: 0,
+                            top: 4,
+                            marginLeft: 0
+                        },
+                        dateInput: {
+                            marginLeft: 36
+                        }
+                    }}
+                    onDateChange={(date) => {this.setState({date: date})}}
                 />
                 <SelectLocation/>
                 <View style={styles.viewStyles}>

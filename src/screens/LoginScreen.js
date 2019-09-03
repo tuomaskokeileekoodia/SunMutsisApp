@@ -5,6 +5,8 @@ import React, {Component} from 'react';
 import {View, Button, StyleSheet, ImageBackground, TouchableOpacity, Text} from 'react-native';
 
 
+
+
 class LoginScreen extends Component {
     state = {};
     componentDidMount() {
@@ -30,23 +32,23 @@ class LoginScreen extends Component {
     }
 
     render() {
+
         const {navigate} = this.props.navigation;
         return (
-            <View>
+
                 <View>
                     <ImageBackground source={require('../components/mutsit.jpg')} style={{width: '100%', height: '100%', resizeMethod: 'cover', opacity: 0.8, zIndex: 1}}>
                     </ImageBackground>
+                    <View style={styles.button}>
+                        <TouchableOpacity onPress={
+                            () => this.authenticate().then(
+                                () => navigate('App', {dbclient: this.state.db}))} title={'KIRJAUDU SISÄÄN'}>
+                            <Text style={styles.text}>
+                                Aloita
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
-                <View style={styles.button}>
-                    <TouchableOpacity onPress={
-                        () => this.authenticate().then(
-                            () => navigate('App', {dbclient: this.state.db}))} title={'KIRJAUDU SISÄÄN'}>
-                        <Text style={styles.text}>
-                            Aloita
-                        </Text>
-                    </TouchableOpacity>
-                </View>
-            </View>
         );
     }
 }

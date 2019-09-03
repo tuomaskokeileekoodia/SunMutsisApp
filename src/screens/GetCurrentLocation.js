@@ -4,6 +4,7 @@
 import React, { Component } from 'react';
 import GetLocation from 'react-native-get-location';
 import {StyleSheet, Text, View, Button, Alert, ActivityIndicator,} from 'react-native';
+import Geolocation from "react-native-geolocation-service";
 
 export default class GetCurrentLocation extends Component{
     state = {

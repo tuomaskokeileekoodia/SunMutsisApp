@@ -1,29 +1,23 @@
 import React, {Component} from 'react';
-import { StyleSheet, View, Button, BackHandler} from 'react-native';
+import {StyleSheet, View, Button, BackHandler, Alert} from 'react-native';
 import Footer from "../components/Footer";
 import Main from "../components/Main";
 import Header from "../components/Header";
-import NavBar from "../components/NavBar";
 import {CompareLocationRadius} from "../components/CompareLocationRadius";
 import Geolocation from "react-native-geolocation-service";
 
 
+
 export default class HomeScreen extends Component {
     state = {tasks:[],
-        longitude: 'unknown',
-        latitude: 'unknown',
+    longitude: 'unknown',
+    latitude: 'unknown',
     };
     watchId: ?number = null;
     componentDidMount() {
         this.loadCollection();
         this.Sijainninhaku();
-        Geolocation.getCurrentPosition(
-            position => {
-                this.setState({latitude: position.coords.latitude, longitude: position.coords.longitude});
-            },
-            (error) => alert(error.message),
-            {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
-        );
+
         this.watchId = Geolocation.watchPosition(
             position => {
                 this.setState({
@@ -36,7 +30,6 @@ export default class HomeScreen extends Component {
             { enableHighAccuracy: true, timeout: 20000, maximumAge: 0},);
         console.log('watch sijainti: ', this.state.latitude, this.state.longitude)
     }
-
 
     loadCollection = () => {
         const collection = this.props.screenProps.dbclient.collection("sunmutsiscollection");
@@ -69,6 +62,7 @@ export default class HomeScreen extends Component {
                 return result.modifiedCount;
 
             }
+
         })
             .catch(err => console.error(`Failed to update item: ${err}`))
     };
@@ -91,13 +85,13 @@ export default class HomeScreen extends Component {
     };
 
     render() {
+
         const {navigate}=this.props.navigation;
         this.Sijainninhaku();
 
     return (
         <View>
             <Header/>
-            <NavBar/>
             <Main tasks={this.state.tasks} deleteTask={this.deleteTask} updateTask={this.updateTask} {...this.props}/>
             <Footer {...this.props} insertTask={this.insertTask}/>
         </View>
@@ -108,7 +102,6 @@ const styles = StyleSheet.create({
     text:{
         fontSize: 30
     },
-
 });
 
 

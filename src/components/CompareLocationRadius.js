@@ -1,11 +1,15 @@
 import { isPointWithinRadius } from 'geolib';
+
+
 export const CompareLocationRadius = (variables) => {
+
     // const current = await GetCurrent();
     // console.log('GetCurrent', current)
     const latit = variables.latitude;
     console.log('latit', latit);
     const longit = variables.longitude;
     console.log('longit', longit);
+
     if (isPointWithinRadius(
         {latitude: latit, longitude: longit},
         {latitude: 60.1088983, longitude:  24.4429},
